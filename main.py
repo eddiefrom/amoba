@@ -8,7 +8,7 @@ def main():
     if(int(answer) == 1):
         newGameMenu()
     elif(int(answer) == 2):
-        print("Káttű")
+        print("Második")
     elif(int(answer) == 3):
         os.system('cls')
         sys.exit()
