@@ -1,3 +1,3 @@
-#Amőba játék
+# Amőba játék
 
-###Készítette: Jakab Csaba
+### Készítette: Jakab Csaba
