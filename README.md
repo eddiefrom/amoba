@@ -1,1 +1,3 @@
-"# amoba" 
+# Amőba játék
+
+### Készítette: Jakab Csaba
