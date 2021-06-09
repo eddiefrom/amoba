@@ -3,7 +3,8 @@ class Table:
     def __init__(self, size):
         self.size = size 
 
-    def drawTable(self):
+
+    def drawTable(self, player1, player2):
 
         for field_size in range(0, self.size):
 
