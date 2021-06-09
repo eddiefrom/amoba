@@ -8,5 +8,5 @@ Konzolos amőba játék, amelyet lehet gép ellen, vagy másik személy ellen j�
 ## Indítás
 ```
 $ cd ..\amoba
-$ python3 main.py
+$ python main.py
 ```
