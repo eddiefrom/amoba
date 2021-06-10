@@ -11,13 +11,13 @@ class Menu:
         print("------------------------AMŐBA JÁTÉK--------------------------\n"
             "                    készítette: Jakab Csaba\n\n\n") 
 
-    def answerCheck(self, num1, num2, out_string):
+    def answerCheck(self, num1, num2, text):
         if(num1 > num2): 
             num1, num2 = num2, num1
 
         while(True):
             try:
-                value = int(input(out_string))
+                value = int(input(text))
                 if(value > num1 and value < num2):
                     return value
                 else:
@@ -26,29 +26,6 @@ class Menu:
                 print("Hibás adat!")
 
     def newGameMenu(self):
-
-
-        # név bekérés
-        self.drawHeader()
-        self.name1 = input("Adja meg a nevét: ")
-        # jel bekérés
-        self.drawHeader()
-        self.mark1 = input("X(1) vagy 0(2) ? : ")
-        #self.mark1 = self.answerCheck(0, 3, "X(1) vagy 0(2) ? : ")
-        # gépi vagy élő ellenfél, ha élő neki is név, jel bekérés
-        self.drawHeader()
-        self.liveOrMachine = input("Gépi(1) vagy élő(2) ellenfél?  : ")
-        #self.liveOrMachine = self.answerCheck(0, 3, "Gépi(1) vagy élő(2) ellenfél?  : ")
-        if(self.liveOrMachine == 2):
-            self.drawHeader()
-            self.name2 = input("Adja meg az ellenfél nevét: ")
-            if(self.mark1 =='X'):
-                self.mark2 = '0'
-            else:
-                self.mark2 = 'X'
-
-        #HIBAKEZELÉS
-
 
         self.drawHeader()
         self.field_size = self.answerCheck(11, 2, "Mező mérete (3 - 10): ")
@@ -59,32 +36,27 @@ class Menu:
         self.drawHeader()
         self.item_number_to_win = self.answerCheck(2, 11, "Győzelemhez szükséges elemszám (3 - 10): ")
 
-        
+        self.drawHeader()
+        self.name1 = input("Adja meg a nevét: ")
 
-    def getName1(self):
-        return self.name1
+        self.drawHeader()
+        self.mark1 = self.answerCheck(0, 3, "X(1) vagy 0(2) ? : ")
 
-    def getName2(self):
-        return self.name2
+        self.drawHeader()
+        self.liveOrMachine = self.answerCheck(0, 3, "Gépi(1) vagy élő(2) ellenfél?  : ")
+
+        if(self.liveOrMachine == '2'):
+            self.drawHeader()
+            self.name2 = input("Adja meg az ellenfél nevét: ")
+        else:
+            self.name2 = "machine"
+
+        if(self.mark1 == 'X'):
+            self.mark2 = '0'
+        else:  
+            self.mark2 = 'X'
+            self.mark1 = '0'
     
-    def getMark1(self):
-        return self.mark1
-    
-    def getMark2(self):
-        return self.mark2
-    
-    def getLiveOrMachine(self):
-        return self.liveOrMachine
-
-    def getFieldSize(self):
-        return self.field_size
-
-    def getGameDifficult(self):
-        return self.game_difficult
-
-    def getItemNumberToWin(self):
-        return self.item_number_to_win    
-
     def infoMenu(self):
 
         self.drawHeader( )
@@ -119,4 +91,29 @@ class Menu:
         elif(int(answer) == 3):
             os.system('cls')
             sys.exit()
+
+    
+    def getName1(self):
+        return self.name1
+
+    def getName2(self):
+        return self.name2
+    
+    def getMark1(self):
+        return self.mark1
+    
+    def getMark2(self):
+        return self.mark2
+    
+    def getLiveOrMachine(self):
+        return self.liveOrMachine
+
+    def getFieldSize(self):
+        return self.field_size
+
+    def getGameDifficult(self):
+        return self.game_difficult
+
+    def getItemNumberToWin(self):
+        return self.item_number_to_win   
 

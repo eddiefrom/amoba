@@ -6,13 +6,15 @@ class Player:
         self.choosedMark = choosedMark
     
     def getOwnFields(self):
-
-        for column in self.ownFieldList:
-            for row in column:
-                print(row)
+        return self.ownFieldList
 
     def getMark(self):
         return self.choosedMark
 
     def getName(self):
         return self.name
+
+    def printList(self):
+        for i in self.ownFieldList:
+            print(i, end='')
+        print("\n")

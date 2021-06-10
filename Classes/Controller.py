@@ -21,25 +21,29 @@ class Controller:
         self.player2Name = self.myMenu.getName2()
         self.mark1 = self.myMenu.getMark1()
         self.mark2 = self.myMenu.getMark2()
-        
+        list_size =  self.field_size * self.field_size
 
-        player1List = [self.field_size ][ self.field_size]
-        player2List = [self.field_size ][ self.field_size]
-        self.player1 = Player(player1List, "p1")
-        self.player2 = Player(player2List, "p2")
+        player1List = [0] * list_size
+        player2List = [0] * list_size
+        self.player1 = Player(player1List, self.player1Name, self.mark1)
+        self.player2 = Player(player2List, self.player2Name, self.mark2)
 
-        self.table = Table(self.field_size)
+        marksList = [' '] * list_size
+        self.table = Table(self.field_size, marksList)
         self.game = Game(self.table, self.player1, self.player2, self.game_difficult, self.item_number_to_win)
 
 
 #----------------------------------TESZT--------------------------------
         
         #ciklusban jelölgetnek nyerésig
+        self.game.getTable(self.game.getPlayer1, self.game.getPlayer2)
+        #for i in range(0, 4): 
+            
+         #   self.game.playerChoose(self.game.getPlayer1().getName)
+           # self.game.machineChoose()
 
-        self.myMenu.drawHeader()
-        self.table.drawTable(self.player1, self.player2)
-        self.game.playerChose(self.player1)
-        self.game.playerChose(self.player2)
+            #self.game.getPlayer1().printList()
+            # self.game.playerChoose(self.player2)
 
        
 
