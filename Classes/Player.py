@@ -1,9 +1,10 @@
 class Player:
 
-    def __init__(self, ownFieldList, name, choosedMark):
+    def __init__(self, ownFieldList, name, choosedMark, isWinner):
         self.ownFieldList = ownFieldList
         self.name = name
         self.choosedMark = choosedMark
+        self.isWinner = isWinner
     
     def getOwnFields(self):
         return self.ownFieldList
@@ -18,3 +19,9 @@ class Player:
         for i in self.ownFieldList:
             print(i, end='')
         print("\n")
+
+    def isWin(self):
+        return self.isWinner
+
+    def setWin(self, num):
+        self.isWinner = num

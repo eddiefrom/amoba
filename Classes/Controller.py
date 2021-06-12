@@ -17,6 +17,7 @@ class Controller:
         self.field_size = self.myMenu.getFieldSize()
         self.game_difficult = self.myMenu.getGameDifficult()
         self.item_number_to_win = self.myMenu.getItemNumberToWin()
+
         self.player1Name = self.myMenu.getName1()
         self.player2Name = self.myMenu.getName2()
         self.mark1 = self.myMenu.getMark1()
@@ -25,8 +26,8 @@ class Controller:
 
         player1List = [0] * list_size
         player2List = [0] * list_size
-        self.player1 = Player(player1List, self.player1Name, self.mark1)
-        self.player2 = Player(player2List, self.player2Name, self.mark2)
+        self.player1 = Player(player1List, self.player1Name, self.mark1, 0)
+        self.player2 = Player(player2List, self.player2Name, self.mark2, 0)
 
         marksList = [' '] * list_size
         self.table = Table(self.field_size, marksList)
@@ -34,17 +35,29 @@ class Controller:
 
 
 #----------------------------------TESZT--------------------------------
+        winner_name =  ""
+        self.myMenu.drawHeader()
+        self.game.getTable()
         
-        #ciklusban jelölgetnek nyerésig
-        self.game.getTable(self.game.getPlayer1, self.game.getPlayer2)
-        #for i in range(0, 4): 
-            
-         #   self.game.playerChoose(self.game.getPlayer1().getName)
-           # self.game.machineChoose()
+        for i in range(0, 10):
+            self.game.playerChoose(self.game.getPlayer1().getName())
+            self.myMenu.drawHeader()
+            self.game.getTable()
+            self.game.checkStatus(self.game.getPlayer1())
 
-            #self.game.getPlayer1().printList()
-            # self.game.playerChoose(self.player2)
+            if(self.game.getPlayer1().isWin()):
+                winner_name = self.game.getPlayer1().getName()
+                break
 
+            #self.game.playerChoose(self.game.getPlayer2().getName())
+            #self.myMenu.drawHeader()
+            #self.game.getTable()
+
+            #if(self.game.getPlayer2().isWin()):
+            #   winner_name = self.game.getPlayer2().getName()
+            #   break
+
+        print("A nyertes: ", winner_name)
        
 
 

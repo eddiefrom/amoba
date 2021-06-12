@@ -1,4 +1,3 @@
-from Classes.Player import Player
 import os, sys
        
 class Menu:
@@ -21,20 +20,20 @@ class Menu:
                 if(value > num1 and value < num2):
                     return value
                 else:
-                    print("Hibás adat!")  
+                    print("Hibás intervallum!")  
             except:
-                print("Hibás adat!")
+                print("Hibás szém érték!")
 
     def newGameMenu(self):
 
         self.drawHeader()
-        self.field_size = self.answerCheck(11, 2, "Mező mérete (3 - 10): ")
+        self.field_size = self.answerCheck(16, 4, "Mező mérete (5 - 11): ")
             
         self.drawHeader()
-        self.game_difficult = self.answerCheck(0,3,"Nehézség (1,2): ")
+        self.game_difficult = self.answerCheck(0,3,"Nehézség (1, 2): ")
                   
         self.drawHeader()
-        self.item_number_to_win = self.answerCheck(2, 11, "Győzelemhez szükséges elemszám (3 - 10): ")
+        self.item_number_to_win = 5
 
         self.drawHeader()
         self.name1 = input("Adja meg a nevét: ")
@@ -45,17 +44,19 @@ class Menu:
         self.drawHeader()
         self.liveOrMachine = self.answerCheck(0, 3, "Gépi(1) vagy élő(2) ellenfél?  : ")
 
-        if(self.liveOrMachine == '2'):
+        if(self.liveOrMachine == 2):
             self.drawHeader()
             self.name2 = input("Adja meg az ellenfél nevét: ")
         else:
-            self.name2 = "machine"
+            self.name2 = "Machine"
 
-        if(self.mark1 == 'X'):
+        if(self.mark1 == 1):
+            self.mark1 = 'X'
             self.mark2 = '0'
-        else:  
+        else: 
+            self.mark1 = '0' 
             self.mark2 = 'X'
-            self.mark1 = '0'
+            
     
     def infoMenu(self):
 

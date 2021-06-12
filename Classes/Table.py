@@ -1,5 +1,3 @@
-from Classes.Player import Player
-
 
 class Table:
     
@@ -7,44 +5,37 @@ class Table:
         self.size = size 
         self.marks = marks
 
-
-    def drawTable(self, player1 : Player, player2 : Player):
-
+    def drawTable(self):
         field_counter = 1
+        mark_counter = 0
 
         for row in range(0, self.size):  
             for line in range (0, self.size ):
                 print(" -------", end='')
             print("")
 
-
-            for side in range(0, 3):       
+            for side in range(0, 3):      
                 for column in range(0, self.size):
-                
+         
                     if(column == self.size - 1):
                         if(side == 0):
-                            if(len(str(field_counter)) == 1):
-                                print("|"+ str(field_counter) + "      |")
-                            else:
-                                print("|"+ str(field_counter) + "     |")
+                            print("|"+ str(field_counter) + (" " * (7 - len(str(field_counter))) + "|"))
                             field_counter += 1     
                         if(side == 1):
-                            print("|   " + self.marks[row] + "   |")                        
+                            print("|"+ " " * 3 + self.marks[mark_counter] + " " * 3 + "|")
+                            mark_counter += 1
                         if(side == 2):
-                            print("|       |")
-
+                            print("|"+ " "  * 7 +"|")
                     else:
                         if(side == 0):
-                            if(len(str(field_counter)) == 1):
-                                print("|"+ str(field_counter) + "      ", end='')
-                            else:
-                                print("|"+ str(field_counter) + "     ", end='')
+                            print("|"+ str(field_counter) + (" " * (7 - len(str(field_counter)))), end='')
                             field_counter += 1     
-                        if(side == 1):
-                            print("|   " + self.marks[row] + "   ", end='')
+                        if(side == 1):            
+                            print("|"+ " " * 3 + self.marks[mark_counter] + " " * 3, end='')
+                            mark_counter += 1
                         if(side == 2):
-                            print("|       ",end='')
-              
+                            print("|"+ " "  * 7, end='')
+                    
         for line in range (0, self.size ):
                 print(" -------", end='')
         print("")
@@ -52,6 +43,9 @@ class Table:
 
     def getTableLength(self):
         return self.size * self.size
+    
+    def getTableSize(self):
+        return self.size
 
     def getMarks(self):
         return self.marks
