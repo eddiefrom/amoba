@@ -1,5 +1,6 @@
 from Classes.Table import Table
 from Classes.Player import Player
+import random
 
 class Game:
 
@@ -35,7 +36,7 @@ class Game:
             except:
                 print("Hibás szám adat!\n")
 
-    def checkNumberOfMarks(self, while_con, if_conm, player : Player):
+    def checkNumberOfMarks(self, while_con, if_conm, player : Player, direction):
         
         playerList = player.getOwnFields()
         counter = 0
@@ -45,42 +46,64 @@ class Game:
             if(playerList[i] == 1):
                 counter += 1
                 item = i
-                while(item + while_con < len(playerList) + 1 ):
-                    if(playerList[item + if_conm]  == 1):
-                        counter += 1
-                        item = item + if_conm
-                    else:
-                        break
+                if(direction == "-"):
+                    while(item + while_con < len(playerList) ):
+                        if(playerList[item + if_conm]  == 1):
+                            counter += 1
+                            item = item + if_conm
+                        else:
+                            break
+                else:
+                    while(item + while_con < len(playerList) + 1):
+                        if(playerList[item + if_conm]  == 1):
+                            counter += 1
+                            item = item + if_conm
+                        else:
+                            break
                 if(counter == 5):
                     player.setWin(1)
                     break
-            counter = 0
+                counter = 0
         
     def checkDirection(self, direction, player : Player):
 
         if(direction == "\\"):
-            self.checkNumberOfMarks(self.table.getTableSize() + 2, self.table.getTableSize() + 1 , player)
+            self.checkNumberOfMarks(self.table.getTableSize() + 2, self.table.getTableSize() + 1 , player, direction)
         if(direction == "/"):
-            self.checkNumberOfMarks(self.table.getTableSize() + 2, self.table.getTableSize() - 1, player)
+            self.checkNumberOfMarks(self.table.getTableSize() + 2, self.table.getTableSize() - 1, player, direction)
         if(direction == "-"):
-            self.checkNumberOfMarks(1, 1, player)
+            self.checkNumberOfMarks(1, 1, player, direction)
         if(direction == "|"):
-            self.checkNumberOfMarks(self.table.getTableSize() + 1, self.table.getTableSize(), player)
+            self.checkNumberOfMarks(self.table.getTableSize() + 1, self.table.getTableSize(), player, direction)
 
 
     def checkStatus(self, player : Player):
+       
+        self.checkDirection("\\", player)
+        self.checkDirection("/", player)
+        self.checkDirection("-", player)
+        self.checkDirection("|", player)    
 
-            self.checkDirection("\\", player)
-            self.checkDirection("/", player)
-            #self.checkDirection("-", player)
-            self.checkDirection("ˇ|", player)
-                 
+
     def getTable(self):
         return self.table.drawTable()
 
-    #implementálás
-    def machineChoose(self):
-        print("AI :D")
+    def machineChoose(self, difficulty):
+
+        if(difficulty == 1):
+            
+            field = int(random.randrange(0, self.table.getTableLength() + 1))
+
+            while(self.table.getMarks()[field - 1] != " "):
+                field = int(random.randrange(0, self.table.getTableLength() + 1))
+
+            self.player2.getOwnFields()[field - 1] = 1
+            self.table.getMarks()[field - 1] = self.player2.getMark()
+        else:
+            #implementálás
+            print("Hard")
+            
+            
 
     def getPlayer1(self):
         return self.player1

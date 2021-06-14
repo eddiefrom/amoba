@@ -2,6 +2,7 @@ from Classes.Table import Table
 from Classes.Player import Player
 from Classes.Menu import Menu
 from Classes.Game import Game
+import os, sys
 
 class Controller:
 
@@ -13,7 +14,7 @@ class Controller:
         self.myMenu.drawMenu()
 
 
-    def startGame(self):
+    def gameInit(self):
         self.field_size = self.myMenu.getFieldSize()
         self.game_difficult = self.myMenu.getGameDifficult()
         self.item_number_to_win = self.myMenu.getItemNumberToWin()
@@ -34,12 +35,15 @@ class Controller:
         self.game = Game(self.table, self.player1, self.player2, self.game_difficult, self.item_number_to_win)
 
 
-#----------------------------------TESZT--------------------------------
+    def startGame(self):
+
+        self.gameInit()
+
         winner_name =  ""
         self.myMenu.drawHeader()
         self.game.getTable()
         
-        for i in range(0, 10):
+        while(winner_name == ""):
             self.game.playerChoose(self.game.getPlayer1().getName())
             self.myMenu.drawHeader()
             self.game.getTable()
@@ -49,17 +53,27 @@ class Controller:
                 winner_name = self.game.getPlayer1().getName()
                 break
 
-            #self.game.playerChoose(self.game.getPlayer2().getName())
-            #self.myMenu.drawHeader()
-            #self.game.getTable()
+            if(self.myMenu.getLiveOrMachine() == 1):
+                self.game.machineChoose(self.myMenu.getGameDifficult())
+            else:
+                self.game.playerChoose(self.game.getPlayer2().getName())    
 
-            #if(self.game.getPlayer2().isWin()):
-            #   winner_name = self.game.getPlayer2().getName()
-            #   break
+            self.myMenu.drawHeader()
+            self.game.getTable()
+            self.game.checkStatus(self.game.getPlayer2())
+
+            if(self.game.getPlayer2().isWin()):
+               winner_name = self.game.getPlayer2().getName()
+               break
 
         print("A nyertes: ", winner_name)
+        answer = self.myMenu.answerCheck(0, 3, "Akar újat játszani? Igen(1), Nem(2) : ")
        
-
+        if(answer == 1):
+            self.startGame()
+        else:
+            os.system('cls')
+            sys.exit()
 
 
 

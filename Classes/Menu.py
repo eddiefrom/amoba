@@ -11,8 +11,6 @@ class Menu:
             "                    készítette: Jakab Csaba\n\n\n") 
 
     def answerCheck(self, num1, num2, text):
-        if(num1 > num2): 
-            num1, num2 = num2, num1
 
         while(True):
             try:
@@ -27,10 +25,7 @@ class Menu:
     def newGameMenu(self):
 
         self.drawHeader()
-        self.field_size = self.answerCheck(16, 4, "Mező mérete (5 - 11): ")
-            
-        self.drawHeader()
-        self.game_difficult = self.answerCheck(0,3,"Nehézség (1, 2): ")
+        self.field_size = self.answerCheck(4, 12, "Mező mérete (5 - 11): ")
                   
         self.drawHeader()
         self.item_number_to_win = 5
@@ -47,8 +42,11 @@ class Menu:
         if(self.liveOrMachine == 2):
             self.drawHeader()
             self.name2 = input("Adja meg az ellenfél nevét: ")
+            self.game_difficult = ""
         else:
-            self.name2 = "Machine"
+            self.name2 = "Gép"
+            self.drawHeader()
+            self.game_difficult = self.answerCheck(0,3, "Nehézség (1, 2): ")
 
         if(self.mark1 == 1):
             self.mark1 = 'X'
@@ -74,22 +72,14 @@ class Menu:
         print("1. Új játék")
         print("2. Ismertető")
         print("3. Kilépés\n")
- 
-        while(True):
-            try:
-                answer = int(input("Válasszon a menüpontok közzül: "))
-                if(answer > 0 and answer < 4):
-                    break  
-                else:
-                    print("Hibás adat!")                   
-            except :
-                print("Hibás adat!")                
+
+        answer = self.answerCheck(0, 4, "Válasszon a menüpontok közzül: ")      
                     
-        if(int(answer) == 1):
+        if(answer == 1):
             self.newGameMenu()
-        elif(int(answer) == 2):
+        elif(answer == 2):
             self.infoMenu()
-        elif(int(answer) == 3):
+        elif(answer == 3):
             os.system('cls')
             sys.exit()
 

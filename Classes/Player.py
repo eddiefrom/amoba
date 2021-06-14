@@ -15,11 +15,6 @@ class Player:
     def getName(self):
         return self.name
 
-    def printList(self):
-        for i in self.ownFieldList:
-            print(i, end='')
-        print("\n")
-
     def isWin(self):
         return self.isWinner
 
