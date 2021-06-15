@@ -1,14 +1,17 @@
-import os, sys
+import os, sys, platform
        
 class Menu:
 
-    def __init__(self) -> None:
+    def __init__(self) :
         pass
         
     def drawHeader(self):
-        os.system('cls')
-        print("------------------------AMŐBA JÁTÉK--------------------------\n"
-            "                    készítette: Jakab Csaba\n\n\n") 
+        if(platform.system() == "Windows"):
+            os.system('cls')
+        else:
+            os.system('clear')
+        print("------------------------AMOBA JATEK--------------------------\n"
+            "                    keszitette: Jakab Csaba\n\n\n") 
 
     def answerCheck(self, num1, num2, text):
 
@@ -18,35 +21,35 @@ class Menu:
                 if(value > num1 and value < num2):
                     return value
                 else:
-                    print("Hibás intervallum!")  
+                    print("Hibas intervallum!")  
             except:
-                print("Hibás szém érték!")
+                print("Hibas szam ertek!")
 
     def newGameMenu(self):
 
         self.drawHeader()
-        self.field_size = self.answerCheck(4, 12, "Mező mérete (5 - 11): ")
+        self.field_size = self.answerCheck(4, 12, "Mezo merete (5 - 11): ")
                   
         self.drawHeader()
         self.item_number_to_win = 5
 
         self.drawHeader()
-        self.name1 = input("Adja meg a nevét: ")
+        self.name1 = input("Adja meg a nevet: ")
 
         self.drawHeader()
         self.mark1 = self.answerCheck(0, 3, "X(1) vagy 0(2) ? : ")
 
         self.drawHeader()
-        self.liveOrMachine = self.answerCheck(0, 3, "Gépi(1) vagy élő(2) ellenfél?  : ")
+        self.liveOrMachine = self.answerCheck(0, 3, "Gepi(1) vagy elo(2) ellenfel?  : ")
 
         if(self.liveOrMachine == 2):
             self.drawHeader()
-            self.name2 = input("Adja meg az ellenfél nevét: ")
+            self.name2 = input("Adja meg az ellenfel nevet: ")
             self.game_difficult = ""
         else:
-            self.name2 = "Gép"
+            self.name2 = "Gep"
             self.drawHeader()
-            self.game_difficult = self.answerCheck(0,3, "Nehézség (1, 2): ")
+            self.game_difficult = self.answerCheck(0,3, "Nehezseg (1, 2): ")
 
         if(self.mark1 == 1):
             self.mark1 = 'X'
@@ -59,9 +62,9 @@ class Menu:
     def infoMenu(self):
 
         self.drawHeader( )
-        print("Az amőba egy kétszemélyes játék, amiben úgy lehet nyerni, ha az ellenfelet megelőzve \n"
-                " elhelyezünk 5 darab általunk választott jelet egymás mellé vizszintesen, horizontálisan vagy átlósan.\n")
-        answer = input("Nyomjon meg egy gombot a visszalépéshez..")
+        print("Az amoba egy ketszemelyes jatek, amiben ugy lehet nyerni, ha az ellenfelet megelozve \n"
+                " elhelyezunk 5 darab altalunk valasztott jelet egymas melle vizszintesen, horizontalisan vagy atlosan.\n")
+        answer = input("Nyomjon meg egy gombot a visszalepeshez..")
     
         self.drawMenu()
 
@@ -69,18 +72,21 @@ class Menu:
 
         self.drawHeader()      
 
-        print("1. Új játék")
-        print("2. Ismertető")
-        print("3. Kilépés\n")
+        print("1. Uj jatek")
+        print("2. Ismerteto")
+        print("3. Kilepes\n")
 
-        answer = self.answerCheck(0, 4, "Válasszon a menüpontok közzül: ")      
+        answer = self.answerCheck(0, 4, "Valasszon a menupontok kozzul: ")      
                     
         if(answer == 1):
             self.newGameMenu()
         elif(answer == 2):
             self.infoMenu()
         elif(answer == 3):
-            os.system('cls')
+            if(platform.system() == "Windows"):
+                os.system('cls')
+            else:
+                os.system('clear')
             sys.exit()
 
     

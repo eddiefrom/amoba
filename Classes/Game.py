@@ -15,8 +15,8 @@ class Game:
         
         while(True):
             try:
-                print(name+" köre.")
-                field = int(input("Hanyadik mező: "))
+                print(name+" kovetkezik.")
+                field = int(input("Hanyadik mezo: "))
 
                 if(field > 0 and field < self.table.getTableLength() + 1):
                     if(self.table.getMarks()[field - 1] == " "):
@@ -30,11 +30,11 @@ class Game:
                             self.table.getMarks()[field - 1] = self.player2.getMark()
                             break
                     else:
-                        print("A mező foglalt!\n")
+                        print("A mezo foglalt!\n")
                 else:
-                    print("Hibás intervallum!\n")
+                    print("Hibas intervallum!\n")
             except:
-                print("Hibás szám adat!\n")
+                print("Hibas szam adat!\n")
 
     def checkNumberOfMarks(self, while_con, if_conm, player : Player, direction):
         

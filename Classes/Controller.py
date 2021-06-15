@@ -2,11 +2,11 @@ from Classes.Table import Table
 from Classes.Player import Player
 from Classes.Menu import Menu
 from Classes.Game import Game
-import os, sys
+import os, sys, platform
 
 class Controller:
 
-    def __init__(self) -> None :
+    def __init__(self) :
         pass
 
     def startMenu(self):
@@ -67,12 +67,15 @@ class Controller:
                break
 
         print("A nyertes: ", winner_name)
-        answer = self.myMenu.answerCheck(0, 3, "Akar újat játszani? Igen(1), Nem(2) : ")
+        answer = self.myMenu.answerCheck(0, 3, "Akar ujat jatszani? Igen(1), Nem(2) : ")
        
         if(answer == 1):
             self.startGame()
         else:
-            os.system('cls')
+            if(platform.system() == "Windows"):
+                os.system('cls')
+            else:
+                os.system('clear')
             sys.exit()
 
 
