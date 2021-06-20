@@ -2,15 +2,17 @@ from Classes.Table import Table
 from Classes.Player import Player
 import random
 
+# A jatekot megvalosito osztaly.
 class Game:
 
-    def __init__(self, table : Table, player1 : Player, player2 : Player, game_diff, item_number_to_win):
+    def __init__(self, table : Table, player1 : Player, player2 : Player, item_number_to_win):
         self.table = table
         self.player1 = player1
         self.player2 = player2
-        self.game_diff = game_diff
         self.item_number_to_win = item_number_to_win
 
+
+    # A jatekosok mezo valasztasat valositja meg.
     def playerChoose(self, name):
         
         while(True):
@@ -36,6 +38,8 @@ class Game:
             except:
                 print("Hibas szam adat!\n")
 
+
+    # A jatekosok altal valasztott jeleket szamolja, hogy van e 5 db egymas melletti.
     def checkNumberOfMarks(self, while_con, if_conm, player : Player, direction):
         
         playerList = player.getOwnFields()
@@ -64,7 +68,10 @@ class Game:
                     player.setWin(1)
                     break
                 counter = 0
-        
+
+
+
+    # A kirakni kivan iranyt figyeli.
     def checkDirection(self, direction, player : Player):
 
         if(direction == "\\"):
@@ -77,6 +84,7 @@ class Game:
             self.checkNumberOfMarks(self.table.getTableSize() + 1, self.table.getTableSize(), player, direction)
 
 
+    # A kirakhato iranyokat figyeli.
     def checkStatus(self, player : Player):
        
         self.checkDirection("\\", player)
@@ -85,24 +93,21 @@ class Game:
         self.checkDirection("|", player)    
 
 
+    # Kirajzolja a tablat.
     def getTable(self):
         return self.table.drawTable()
 
-    def machineChoose(self, difficulty):
 
-        if(difficulty == 1):
-            
+    # Gepi ellenfel valasztasa.
+    def machineChoose(self):
+
+        field = int(random.randrange(0, self.table.getTableLength() + 1))
+
+        while(self.table.getMarks()[field - 1] != " "):
             field = int(random.randrange(0, self.table.getTableLength() + 1))
 
-            while(self.table.getMarks()[field - 1] != " "):
-                field = int(random.randrange(0, self.table.getTableLength() + 1))
-
-            self.player2.getOwnFields()[field - 1] = 1
-            self.table.getMarks()[field - 1] = self.player2.getMark()
-        else:
-            #implementálás
-            print("Hard")
-            
+        self.player2.getOwnFields()[field - 1] = 1
+        self.table.getMarks()[field - 1] = self.player2.getMark()
             
 
     def getPlayer1(self):

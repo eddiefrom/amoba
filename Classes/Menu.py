@@ -1,10 +1,13 @@
 import os, sys, platform
        
+# A menut megvalosito osztaly.
 class Menu:
 
     def __init__(self) :
         pass
         
+
+    # Fejlecet rajzolja ki
     def drawHeader(self):
         if(platform.system() == "Windows"):
             os.system('cls')
@@ -13,6 +16,8 @@ class Menu:
         print("------------------------AMOBA JATEK--------------------------\n"
             "                    keszitette: Jakab Csaba\n\n\n") 
 
+
+    # A jatekos altal megadott valaszt vizsgalja.
     def answerCheck(self, num1, num2, text):
 
         while(True):
@@ -24,7 +29,20 @@ class Menu:
                     print("Hibas intervallum!")  
             except:
                 print("Hibas szam ertek!")
+    
 
+    # A megadott nevet vizsgalja.
+    def nameCheck(self, text):
+
+        while(True):
+                name = input(text)
+                if(name == ""):
+                    print("Adjon meg ervenyes nevet")
+                else:
+                    return name
+
+
+    # Uj jatek eseten ezek a kerdesek futnak le.
     def newGameMenu(self):
 
         self.drawHeader()
@@ -34,7 +52,7 @@ class Menu:
         self.item_number_to_win = 5
 
         self.drawHeader()
-        self.name1 = input("Adja meg a nevet: ")
+        self.name1 = self.nameCheck("Adja meg a nevet: ")
 
         self.drawHeader()
         self.mark1 = self.answerCheck(0, 3, "X(1) vagy 0(2) ? : ")
@@ -44,12 +62,10 @@ class Menu:
 
         if(self.liveOrMachine == 2):
             self.drawHeader()
-            self.name2 = input("Adja meg az ellenfel nevet: ")
-            self.game_difficult = ""
+            self.name2 = self.nameCheck("Adja meg az ellenfel nevet: ")
         else:
             self.name2 = "Gep"
             self.drawHeader()
-            self.game_difficult = self.answerCheck(0,3, "Nehezseg (1, 2): ")
 
         if(self.mark1 == 1):
             self.mark1 = 'X'
@@ -59,6 +75,7 @@ class Menu:
             self.mark2 = 'X'
             
     
+    # A jatek ismerteteset irja ki.
     def infoMenu(self):
 
         self.drawHeader( )
@@ -68,6 +85,8 @@ class Menu:
     
         self.drawMenu()
 
+
+    # Kirajzolja a fomenut.
     def drawMenu(self):
 
         self.drawHeader()      
@@ -107,9 +126,6 @@ class Menu:
 
     def getFieldSize(self):
         return self.field_size
-
-    def getGameDifficult(self):
-        return self.game_difficult
 
     def getItemNumberToWin(self):
         return self.item_number_to_win   

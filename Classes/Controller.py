@@ -4,6 +4,7 @@ from Classes.Menu import Menu
 from Classes.Game import Game
 import os, sys, platform
 
+# A kontrollert megvalosito osztaly.
 class Controller:
 
     def __init__(self) :
@@ -16,7 +17,6 @@ class Controller:
 
     def gameInit(self):
         self.field_size = self.myMenu.getFieldSize()
-        self.game_difficult = self.myMenu.getGameDifficult()
         self.item_number_to_win = self.myMenu.getItemNumberToWin()
 
         self.player1Name = self.myMenu.getName1()
@@ -32,7 +32,7 @@ class Controller:
 
         marksList = [' '] * list_size
         self.table = Table(self.field_size, marksList)
-        self.game = Game(self.table, self.player1, self.player2, self.game_difficult, self.item_number_to_win)
+        self.game = Game(self.table, self.player1, self.player2, self.item_number_to_win)
 
 
     def startGame(self):
