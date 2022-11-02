@@ -1,12 +1,12 @@
-# Amőba játék
+# Tic-tac-toe game.
 
-### Készítette: Jakab Csaba
+### Made by: Jakab Csaba
 
-## Leírás
-Konzolos amőba játék, amelyet lehet gép ellen, vagy másik személy ellen játszani.
+## Description
+It is a cmd tic-tac-toe game, what can be played against machine or other person.
 
-## Indítás
-A futtatás python 3.x verzióval lehetséges csak!
+## Start
+You can run with python version 3.x!
 ```
 $ cd ..\amoba
 $ python main.py
